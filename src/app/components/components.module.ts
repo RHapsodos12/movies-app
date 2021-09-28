@@ -4,6 +4,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 import { SlideshowComponent } from './slideshow/slideshow.component';
 import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-poster-grid.component';
+import { PipesModule } from '../pipes/pipes.module';
+
+import { RatingModule } from 'ng-starrating';
+import { CastSlideshowComponent } from './cast-slideshow/cast-slideshow.component';
 
 
 
@@ -11,15 +15,20 @@ import { PeliculasPosterGridComponent } from './peliculas-poster-grid/peliculas-
   declarations: [
     NavbarComponent,
     SlideshowComponent,
-    PeliculasPosterGridComponent
+    PeliculasPosterGridComponent,
+    CastSlideshowComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    RatingModule,
+    PipesModule
   ],
   exports: [
     NavbarComponent,
-    SlideshowComponent
+    SlideshowComponent,
+    PeliculasPosterGridComponent,
+    CastSlideshowComponent
   ]
 })
 export class ComponentsModule { }
