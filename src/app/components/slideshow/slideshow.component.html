@@ -1,5 +1,5 @@
 <!-- Slider main container -->
-<div class="swiper-container">
+<div class="swiper-container animate__animated animate__slideInDown">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
         <!-- Slides -->
@@ -7,7 +7,7 @@
             <div class="movie-description">
                 <h3>{{ movie.title }}</h3>
                 <p>
-                    {{ movie.overview | slice:0:230 }}...
+                    {{ movie.overview | slice:0:320 }}...
                 </p>
             </div>
         </div>
