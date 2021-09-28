@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Movie } from 'src/app/interfaces/cartelera-respones';
 import { PeliculasService } from 'src/app/services/peliculas.service';
 
@@ -7,17 +7,46 @@ import { PeliculasService } from 'src/app/services/peliculas.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+
+export class HomeComponent implements OnInit, OnDestroy {
 
   public movies: Movie[] = [];
+  public moviesSlideshow: Movie[] = [];
+
+  @HostListener('window:scroll', ['$event'])
+
+  // tslint:disable-next-line: typedef
+  onScroll() {
+    const pos = ( document.documentElement.scrollTop || document.body.scrollTop ) + 1500;
+    const max = ( document.documentElement.scrollHeight || document.body.scrollHeight );
+
+    if ( pos > max ) {
+
+      if ( this.peliculasService.cargando ) { return; }
+
+      this.peliculasService.getCartelera().subscribe( movies => {
+        this.movies.push( ...movies );
+      });
+    }
+
+    // console.log({ pos, max });
+  }
 
   constructor( private peliculasService: PeliculasService ) { }
 
   ngOnInit(): void {
+
     this.peliculasService.getCartelera()
-    .subscribe( resp => {
-      this.movies = resp.results;
+    .subscribe( movies => {
+      this.movies = movies;
+      this.moviesSlideshow = movies;
     });
+
+  }
+
+  // tslint:disable-next-line: typedef
+  ngOnDestroy() {
+    this.peliculasService.resetCarteleraPage();
   }
 
 }
