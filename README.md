@@ -47,7 +47,7 @@ Get basics billing data for the current user or for a given organization ID (as 
 
 
 #### Put
-[api/v1/members/bulk/{institutionId}](#put-apiv1membersbulk{institutionId})
+[api/v1/members/bulk/{institutionId}](#put-apiv1membersbulkinstitutionId)
 #### Patch
 /api/v1/members/assign/{operation} </br>
 /api/v1/members/beneficiary/{id} </br>
@@ -59,5 +59,5 @@ Get basics billing data for the current user or for a given organization ID (as 
 /api/v1/members/companyId/{id} </br>
 /api/v1/members/{id} </br>
 
-# PUT /api/v1/members/bulk/{institutionId}
+### PUT /api/v1/members/bulk/{institutionId}
 asdasd
